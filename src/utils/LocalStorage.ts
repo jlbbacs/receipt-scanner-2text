@@ -1,5 +1,5 @@
 import type { ReceiptData } from '../types/receipt';
-import { convertImageToBase64 } from './excelreports';
+import { convertImageToBase64 } from '../utils/ExcelReports';
 
 const STORAGE_KEY = 'scanned_receipts';
 

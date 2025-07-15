@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import { ReceiptData } from '../types/receipt';
+import type { ReceiptData } from '../types/receipt';
 
 export function exportToExcel(receipts: ReceiptData[]): void {
   // Create workbook
