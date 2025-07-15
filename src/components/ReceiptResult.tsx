@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ReceiptData } from '../types/receipt';
 import { Store, Calendar, DollarSign, ShoppingCart, Save } from 'lucide-react';
 

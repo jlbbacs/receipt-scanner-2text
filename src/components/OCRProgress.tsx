@@ -1,4 +1,3 @@
-import React from 'react';
 import { Loader2, Eye } from 'lucide-react';
 import type { OCRProgress as OCRProgressType } from '../types/receipt';
 

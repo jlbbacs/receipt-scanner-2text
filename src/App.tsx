@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef } from 'react';
 import { createWorker } from 'tesseract.js';
 import { Camera, Receipt, History } from 'lucide-react';
 import { ImageUpload } from './components/ImageUpload';
