@@ -1,5 +1,7 @@
+import React from 'react';
 import type { ReceiptData } from '../types/receipt';
-import { Store, Calendar, DollarSign, ShoppingCart, Save } from 'lucide-react';
+import { Store, Calendar, DollarSign, ShoppingCart, Save, Download } from 'lucide-react';
+import { exportSingleReceiptToExcel } from '../utils/excelreports';
 
 interface ReceiptResultsProps {
   receipt: ReceiptData;
@@ -11,13 +13,22 @@ export function ReceiptResults({ receipt, onSave }: ReceiptResultsProps) {
     <div className="w-full max-w-sm sm:max-w-2xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow-md">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg sm:text-xl font-bold text-gray-800">Receipt Details</h3>
-        <button
-          onClick={onSave}
-          className="flex items-center space-x-2 px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base"
-        >
-          <Save className="w-4 h-4" />
-          <span>Save</span>
-        </button>
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+          <button
+            onClick={() => exportSingleReceiptToExcel(receipt)}
+            className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
+          >
+            <Download className="w-4 h-4" />
+            <span>Export</span>
+          </button>
+          <button
+            onClick={onSave}
+            className="flex items-center justify-center space-x-2 px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base"
+          >
+            <Save className="w-4 h-4" />
+            <span>Save</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6">

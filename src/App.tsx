@@ -1,4 +1,4 @@
-import  { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createWorker } from 'tesseract.js';
 import { Camera, Receipt, History } from 'lucide-react';
 import { ImageUpload } from './components/ImageUpload';
@@ -7,8 +7,8 @@ import { OCRProgress } from './components/OCRProgress';
 import { ReceiptResults } from '../src/components/ReceiptResult';
 import { ReceiptHistory } from './components/ReceiptHistory';
 import type{ ReceiptData, OCRProgress as OCRProgressType } from './types/receipt';
-import  { parseReceiptText } from './utils/ReceiptParser';
-import { saveReceipt, getReceipts, deleteReceipt } from './utils/LocalStorage';
+import { parseReceiptText } from '../src/utils/ReceiptParser';
+import { saveReceipt, getReceipts, deleteReceipt } from '../src/utils/LocalStorage';
 
 type AppState = 'upload' | 'processing' | 'results' | 'history';
 
@@ -103,9 +103,10 @@ function App() {
 
   const handleSaveReceipt = () => {
     if (currentReceipt) {
-      saveReceipt(currentReceipt);
-      setReceipts(getReceipts());
-      setCurrentState('history');
+      saveReceipt(currentReceipt).then(() => {
+        setReceipts(getReceipts());
+        setCurrentState('history');
+      });
     }
   };
 

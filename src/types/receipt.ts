@@ -7,6 +7,7 @@ export interface ReceiptData {
   items: ReceiptItem[];
   rawText: string;
   imageUrl: string;
+  imageData?: string; // Base64 encoded image data for export
 }
 
 export interface ReceiptItem {

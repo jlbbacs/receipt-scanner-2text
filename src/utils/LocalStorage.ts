@@ -1,8 +1,18 @@
 import type { ReceiptData } from '../types/receipt';
+import { convertImageToBase64 } from './excelreports';
 
 const STORAGE_KEY = 'scanned_receipts';
 
-export function saveReceipt(receipt: ReceiptData): void {
+export async function saveReceipt(receipt: ReceiptData): Promise<void> {
+  // Convert image to base64 for better storage and export
+  if (receipt.imageUrl && !receipt.imageData) {
+    try {
+      receipt.imageData = await convertImageToBase64(receipt.imageUrl);
+    } catch (error) {
+      console.error('Failed to convert image to base64:', error);
+    }
+  }
+  
   const receipts = getReceipts();
   receipts.unshift(receipt);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(receipts));
