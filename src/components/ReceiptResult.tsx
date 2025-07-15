@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ReceiptData } from '../types/receipt';
 import { Store, Calendar, DollarSign, ShoppingCart, Save, Download } from 'lucide-react';
-import { exportSingleReceiptToExcel } from '../utils/excelreports';
+import { exportSingleReceiptToExcel } from '../utils/ExcelReports';
 
 interface ReceiptResultsProps {
   receipt: ReceiptData;
