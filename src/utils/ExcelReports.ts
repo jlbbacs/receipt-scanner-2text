@@ -8,10 +8,10 @@ export function exportToExcel(receipts: ReceiptData[]): void {
   // Create summary sheet
   const summaryData = receipts.map((receipt, index) => ({
     'Receipt #': index + 1,
-    'Merchant': receipt.merchant,
+    'Name': receipt.merchant,
     'Date': receipt.date,
     'Total Amount': receipt.total,
-    'Items Count': receipt.items.length,
+    // 'Items Count': receipt.items.length,
     'Scan Date': new Date(receipt.timestamp).toLocaleDateString(),
     'Raw Text': receipt.rawText.replace(/\n/g, ' ').substring(0, 100) + '...'
   }));
@@ -26,7 +26,7 @@ export function exportToExcel(receipts: ReceiptData[]): void {
       receipt.items.forEach((item, itemIndex) => {
         itemsData.push({
           'Receipt #': receiptIndex + 1,
-          'Merchant': receipt.merchant,
+          'Name': receipt.merchant,
           'Receipt Date': receipt.date,
           'Item #': itemIndex + 1,
           'Item Name': item.name,
@@ -39,7 +39,7 @@ export function exportToExcel(receipts: ReceiptData[]): void {
       // Add receipt without items
       itemsData.push({
         'Receipt #': receiptIndex + 1,
-        'Merchant': receipt.merchant,
+        'Name': receipt.merchant,
         'Receipt Date': receipt.date,
         'Item #': 1,
         'Item Name': 'No items detected',
@@ -56,7 +56,7 @@ export function exportToExcel(receipts: ReceiptData[]): void {
   // Create raw text sheet for full OCR results
   const rawTextData = receipts.map((receipt, index) => ({
     'Receipt #': index + 1,
-    'Merchant': receipt.merchant,
+    'Name': receipt.merchant,
     'Date': receipt.date,
     'Total': receipt.total,
     'Scan Date': new Date(receipt.timestamp).toLocaleDateString(),
